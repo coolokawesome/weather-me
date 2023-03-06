@@ -16,15 +16,14 @@ function LocationDropdown() {
     axios
       .get('http://api.geonames.org/searchJSON', {
         params: {
-          q: ', Canada',
-
-          maxRow: 500,
+          country: 'CA',
+          maxRow: 5000,
           featureClass: 'P',
           username: 'syrussamson',
         },
       })
       .then((response) => {
-        const cities = response.data.geonames.map((city) => city.name);
+        const cities = response.data.geonames.map((city) => city.name).sort();
         setLocations(cities);
       });
   }, []);
