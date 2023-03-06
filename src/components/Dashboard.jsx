@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
-
+import Footer from './Footer';
 
 
 function Dashboard() {
@@ -43,35 +42,92 @@ function Dashboard() {
         setIsSnowy(weatherData?.weather?.[0]?.main === 'Snow');
 
         const next12Hours = forecastData?.list?.slice(0, 12) || [];
-        const forecastList = next12Hours.map((hourData) => {
-          const hour = new Date(hourData.dt * 1000).toLocaleTimeString('en-US', { hour: 'numeric' });
-          const temp = hourData.main.temp;
-          const description = hourData.weather?.[0]?.description;
-          return `${hour}: ${temp}\u00b0, ${description}`;
-        });
+        const forecastList = next12Hours
+          .sort((a, b) => a.dt - b.dt)
+          .map((hourData) => {
+            const hour = new Date(hourData.dt * 1000).toLocaleTimeString('en-US', { hour: 'numeric' });
+            const temp = hourData.main.temp;
+            const description = hourData.weather?.[0]?.description;
+            return `${hour}: \n ${Math.round(temp)}\u00b0 \n ${description}`;
+          });
         setHourlyForecast(forecastList);
       }).catch(error => console.log(error));
     }
   }, []);
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <button onClick={handleGetStarted}>{'<- go back'}</button>
-      {location && <p>Location: {location}</p>}
-      {temperature && <p>Temperature: {temperature}&deg;C</p>}
-      {isCloudy && <p>It's cloudy today</p>}
-      {isSunny && <p>It's sunny today</p>}
-      {isRainy && <p>It's rainy today</p>}
-      {isSnowy && <p>It's snowy today</p>}
-      {hourlyForecast && (
-        <ul>
-          {hourlyForecast.map((forecast, index) => (
-            <li key={index}>{forecast}</li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <>
+      <div className='container dashboard-container mt-2'>
+        <div className='d-flex justify-content-between '>
+          <h1 className='col-6 col-md-6 text-start'>Dashboard</h1>
+          <button
+              onClick={handleGetStarted}
+              className='col-4 
+              text-center
+              justify-content-center 
+              justify-content-md-end 
+              col-md-3
+              btn 
+              btn-dash text-light 
+              rounded-5 '
+            >{'← Back'}</button>
+        </div>
+
+
+        {location &&
+          <div className='row d-flex justify-content-between mb-4 me-2'>
+            <div className="col-6 col-md-6 text-start">
+              <h2 class="mt-2"><u>{location}</u></h2>
+            </div>
+            {/* <button
+              onClick={handleGetStarted}
+              className='col-4 
+              text-center
+              justify-content-center 
+              justify-content-md-end 
+              col-md-3
+              btn 
+              btn-start text-light 
+              rounded-5 '
+            >{'← Back'}</button> */}
+          </div>
+        }
+        <div className='temp-container'>
+          <div className='row'>
+            <div className="col-6">
+              {temperature && <h4>{Math.round(temperature)}&deg;C</h4>}
+              {isCloudy && <p>It's cloudy today.</p>}
+              {isSunny && <p> It's sunny today.</p>}
+              {isRainy && <p> It's rainy today.</p>}
+              {isSnowy && <p> It's snowy today.</p>}
+            </div>
+            <div className='text-center col-5 text-sm-start text-lg-end'>
+            {isCloudy && <h1 className='display-1'>☁️</h1>}
+            {isSunny && <h1 className='display-1'>🌞</h1>}
+            {isRainy && <h1 className='display-1'>🌧</h1>}
+            {isSnowy && <h1 className='display-1'>❄️</h1>}
+            </div>
+          </div>
+        </div>
+
+        <h3 className="mt-5 mb-2">Over the next 3 days:</h3>
+        {hourlyForecast && (
+          <div className='row'>
+            <div className="">
+              <div className='weather-box d-flex flex-wrap'>
+                {hourlyForecast.map((forecast, index) => (
+                  <div className='weather-item col-2 col-lg-1 '>
+                    <p className="" key={index}>{forecast}</p>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          </div>
+        )}
+
+      </div>
+      <Footer /></>
   );
 }
 

@@ -6,7 +6,7 @@ import Dashboard from './Dashboard';
 
 
 function LocationDropdown() {
-    const location = useNavigate()
+  const location = useNavigate()
   const [searchTerm, setSearchTerm] = useState('');
   const [locations, setLocations] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(Cookies.get('location') || null);
@@ -17,7 +17,7 @@ function LocationDropdown() {
       .get('http://api.geonames.org/searchJSON', {
         params: {
           q: ', Canada',
-          
+
           maxRow: 500,
           featureClass: 'P',
           username: 'syrussamson',
@@ -29,7 +29,7 @@ function LocationDropdown() {
       });
   }, []);
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
   const handleSearchInputChange = (event) => {
@@ -55,30 +55,42 @@ const navigate = useNavigate();
 
   return (
     <div>
-      <label htmlFor="location-dropdown">Select your location:</label>
-      <input
-        type="text"
-        id="search-input"
-        placeholder="Search locations"
-        value={searchTerm}
-        onChange={handleSearchInputChange}
-      />
-      <select
-        id="location-dropdown"
-        value={selectedLocation}
-        onChange={handleLocationSelect}
-      >
-        <option value="" disabled>
-          Please select a location
-        </option>
-        {filteredLocations.map((location) => (
-          <option key={location} value={location}>
-            {location}
+      <div className="input-group input-group-md">
+
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search locations"
+          value={searchTerm}
+          onChange={handleSearchInputChange}
+          className='
+        col-12 col-md-8
+        input-rounded
+        form-control
+        '
+        />
+        <select
+          className='
+          form-select
+
+          '
+          id="location-dropdown"
+          value={selectedLocation}
+          onChange={handleLocationSelect}
+        >
+          <option value="" disabled>
+            Please select a location
           </option>
-        ))}
-      </select>
-      <button onClick={handleSaveLocation}>Save Location</button>
-      {selectedLocation && <h1>Your selected location: {selectedLocation}</h1>}
+          {filteredLocations.map((location) => (
+            <option key={location} value={location}>
+              {location}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <button className='mt-5 mb-5 btn btn-start rounded-pill text-white btn-lg col-12 d-flex justify-content-center' onClick={handleSaveLocation}>Save Location</button>
+      {selectedLocation && <h1 className='text-light'>Your selected location: {selectedLocation}</h1>}
     </div>
   );
 }
