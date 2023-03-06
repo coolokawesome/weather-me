@@ -3,12 +3,15 @@ import React from 'react'
 function Footer() {
   return (
 
-    <div className="footer-container container col-12 d-flex justify-content-center">
+    <div className="footer-container container col-12 d-flex justify-content-center  text-center">
         <div className="row">
-            <div className="col">
-                <a>
-                     <button className="btn btn-link">Github</button>
+            <div className="">
+                <a href="http://github.com/coolokawesome/" className='link-light' target={'_blank'}>
+                     Github
                 </a>
+            </div>
+            <div className="">
+                <p>Data provied by <a target={'_blank'} href={'https://openweathermap.org/'}>https://openweathermap.org/</a></p>
             </div>
         </div>
     </div>

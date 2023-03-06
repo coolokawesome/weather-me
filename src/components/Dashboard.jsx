@@ -105,12 +105,12 @@ function Dashboard() {
                     </div>
                   }
                   {feelsLike && <h3 className=''>feels like {Math.round(feelsLike)}&deg;C</h3>}
-                  {isCloudy && <p>It's cloudy today.</p>}
-                  {isSunny && <p> It's sunny today.</p>}
-                  {isRainy && <p> It's rainy today.</p>}
-                  {isSnowy && <p> It's snowy today.</p>}
-                  <p>Chance of Precipitation: {pop * 100}%</p>
-                  <p>Humidity: {humid} %</p>
+                  {isCloudy && <h4>It's cloudy today.</h4>}
+                  {isSunny && <h4> It's sunny today.</h4>}
+                  {isRainy && <h4> It's rainy today.</h4>}
+                  {isSnowy && <h4> It's snowy today.</h4>}
+                  <p>Chance of precipitation: {pop * 100}%</p>
+                  <p>Humidity: {Math.round(humid)} %</p>
                   <p>Wind Speed: {Math.round(wind)} km/h</p>
                 </div>
                 <div className=''>

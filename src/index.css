@@ -77,3 +77,5 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+h4 {
+	font-size: larger !important; }
