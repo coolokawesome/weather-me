@@ -26,7 +26,9 @@ function Dashboard() {
     navigate('/location');
   };
   //get the cookie saved from the user's input to be parsed into the API
+
   useEffect(() => {
+
     const savedLocation = Cookies.get('location');
     setLocation(savedLocation);
 
@@ -110,7 +112,7 @@ function Dashboard() {
                   {isRainy && <h4> It's rainy today.</h4>}
                   {isSnowy && <h4> It's snowy today.</h4>}
                   <p>Chance of precipitation: {pop * 100}%</p>
-                  <p>Humidity: {Math.round(humid)} %</p>
+                  <p>Humidity: {humid} %</p>
                   <p>Wind Speed: {Math.round(wind)} km/h</p>
                 </div>
                 <div className=''>
@@ -140,6 +142,7 @@ function Dashboard() {
                             <div className='weather-item col-3 col-lg-3 '>
                               <p className="" key={index}>{forecast}</p>
                             </div>}
+                            {console.log(pop)}
                         </>
                       ))}
                     </div>
