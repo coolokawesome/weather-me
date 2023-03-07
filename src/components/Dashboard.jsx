@@ -35,8 +35,8 @@ function Dashboard() {
     //API key and URL's for fetch
     if (savedLocation) {
       const apiKey = '288662d829f8330f0f719d7205ce1180';
-      const weatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${savedLocation}&appid=${apiKey}&units=metric`;
-      const forecastUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${savedLocation}&appid=${apiKey}&units=metric`;
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${savedLocation}&appid=${apiKey}&units=metric`;
+      const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${savedLocation}&appid=${apiKey}&units=metric`;
 
       Promise.all([
         fetch(weatherUrl).then(res => res.json()),

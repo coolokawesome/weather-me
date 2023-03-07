@@ -14,7 +14,7 @@ function LocationDropdown() {
 
   useEffect(() => {
     axios
-      .get('http://api.geonames.org/searchJSON', {
+      .get('https://api.geonames.org/searchJSON', {
         params: {
           country: 'CA',
           maxRow: 5000,
