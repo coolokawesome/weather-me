@@ -11,7 +11,7 @@ function Footer() {
                 </a>
             </div>
             <div className="">
-                <p>Data provied by <a target={'_blank'} href={'https://openweathermap.org/'}>https://openweathermap.org/</a></p>
+                <p>Data provied by <a target={'_blank'} className='link-light' href={'https://openweathermap.org/'}>https://openweathermap.org/</a></p>
             </div>
         </div>
     </div>

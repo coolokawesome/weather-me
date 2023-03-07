@@ -14,7 +14,7 @@ function LocationDropdown() {
 
   useEffect(() => {
     axios
-      .get('https://api.geonames.org/searchJSON', {
+      .get('https://secure.geonames.org/searchJSON', {
         params: {
           country: 'CA',
           maxRow: 5000,
@@ -42,7 +42,6 @@ function LocationDropdown() {
 
   const handleSaveLocation = () => {
     Cookies.set('location', selectedLocation, { expires: 7 });
-    alert(`Location ${selectedLocation} saved!`);
     navigate('/dashboard');
 
 
